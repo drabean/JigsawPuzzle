@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/Jigsaw_Final/Assets/Captures
+/Jigsaw_Final/Library
+/Jigsaw_Final/Packages
