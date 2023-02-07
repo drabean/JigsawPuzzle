@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: c29856a5edada424ca50f99e8d573648
   - enabled: 1
     path: Assets/04. DrawScene/04. DrawScene.unity
-    guid: 2db8b29a5b6561a4babb1704340d26cb
+    guid: cab3b5077f7f09e42bf7e50311de81ea
   - enabled: 1
     path: Assets/EndScene/Additive_EndScene.unity
     guid: 609aec8b3453bce4ea8111aa4147b5fa

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using static NativeCamera;
 
 public class TypeSelectSceneManager: MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class TypeSelectSceneManager: MonoBehaviour
     public void Btn_Camera()
     {
         GameData.Inst.type = GAMETYPE.CAMERA;
+        Camera_Open();
+
+
     }
 
     public void Btn_Select()
@@ -25,6 +29,7 @@ public class TypeSelectSceneManager: MonoBehaviour
 
     Sprite loadedSp;
 
+
     public void Gallery_Open()  // 갤러리 진입
     {
         NativeGallery.GetImageFromGallery((file) =>
@@ -34,14 +39,25 @@ public class TypeSelectSceneManager: MonoBehaviour
             if (select.Length > 50000000) return;
 
             // 불러오기
-            if (!string.IsNullOrEmpty(file)) StartCoroutine(LoadImage(file));
+            if (!string.IsNullOrEmpty(file)) LoadImage(file);
         });
     }
-
-    IEnumerator LoadImage(string path)  // 갤러리에서 사진 선별 후 변환
+    public void Camera_Open()
     {
-        yield return null;
+        NativeCamera.TakePicture((file) =>
+        {
+            FileInfo select = new FileInfo(file);
 
+            if (select.Length > 50000000) return;
+
+            // 불러오기
+            if (!string.IsNullOrEmpty(file)) LoadImage(file);
+        });
+
+    }
+
+    void LoadImage(string path)  // 갤러리에서 사진 선별 후 변환
+    {
         byte[] fileData = File.ReadAllBytes(path);
 
         Texture2D tex = new Texture2D(0, 0);

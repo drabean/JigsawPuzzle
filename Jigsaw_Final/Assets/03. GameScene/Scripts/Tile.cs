@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Tile
@@ -129,6 +130,7 @@ public class Tile
     {
         FloodFillInit();
         FloodFill();
+        setOutline();
         FinalCut.Apply();
     }
     #endregion
@@ -150,7 +152,7 @@ public class Tile
         SpriteRenderer sp = obj.AddComponent<SpriteRenderer>();
 
         // final cut 에서 sprite를 생성
-        sp.sprite = UTILS.CreateSpriteFromTexture2D(tile.FinalCut, 0, 0, Padding * 2 + TileSize, Padding * 2 + TileSize);
+        sp.sprite = UTILS.CreateSpriteFromTexture2D(tile.FinalCut, 0, 0, Padding * 2 + TileSize, Padding * 2 + TileSize, 1, SpriteMeshType.Tight);
         sp.sortingOrder = 1;
         obj.AddComponent<BoxCollider2D>().size = Vector2.one * TileSize;
 
@@ -169,19 +171,20 @@ public class Tile
         SpriteRenderer sp = obj.AddComponent<SpriteRenderer>();
 
         // final cut 에서 sprite를 생성
-        sp.sprite = UTILS.CreateSpriteFromTexture2D(tile.FinalCut, 0, 0, Padding * 2 + TileSize, Padding * 2 + TileSize);
+        sp.sprite = UTILS.CreateSpriteFromTexture2D(tile.FinalCut, 0, 0, Padding * 2 + TileSize, Padding * 2 + TileSize, 1, SpriteMeshType.Tight);
         sp.sortingOrder = -1;
         sp.color = new Color(1, 1, 1, 0.3f);
         return obj;
     }
     #endregion
-    #region floodFill 관련
     //퍼즐조각을 잘라낼 원본 이미지에서 x,y 위치의 픽셀을 복사해 저장.
     void SetPixel(int x, int y)
     {
         Color c = baseTex.GetPixel(x + xIndex * TileSize, y + yIndex * TileSize);
         FinalCut.SetPixel(x, y, c);
     }
+
+    List<Vector2Int> outlinePoints = new List<Vector2Int>();
 
     //퍼즐조각을 잘라낼 기준이 될 선을 그림.
     void FloodFillInit()
@@ -198,21 +201,18 @@ public class Tile
             }
         }
 
-        List<Vector2> points = new List<Vector2>();
-
         for (int i = 0; i < mPosNeg.Length; ++i)
         {
             //각 4방향에 대해 curve 그리기.
-            points.AddRange(CreateCurve((Direction)i, mPosNeg[i]));
+            outlinePoints.AddRange(CreateCurve((Direction)i, mPosNeg[i]));
             
         }
-
+        outlinePoints.Distinct();
         // curve에 겹치는 픽셀 좌표들을 이미 방문한것으로 판정해서, 커브 이후 영역들을 칠하지 않게 만듬
-        for (int i = 0; i < points.Count; ++i)
+        for (int i = 0; i < outlinePoints.Count; ++i)
         {
-            pixelVisited[(int)points[i].x, (int)points[i].y] = true;
-            //Edge부분 색깔 넣어주기
-            FinalCut.SetPixel((int)points[i].x, (int)points[i].y, EdgeColor);
+            pixelVisited[(int)outlinePoints[i].x, (int)outlinePoints[i].y] = true;
+
         }
 
         //탐색큐에 중앙좌표 넣어서 중앙부터 칠하기 시작.
@@ -287,16 +287,15 @@ public class Tile
         }
     }
 
-    List<Vector2> CreateCurve(Direction dir, PosNegType type)
+    List<Vector2Int> CreateCurve(Direction dir, PosNegType type)
     {
         List<Vector2> points = new List<Vector2>(BezCurve);
         //BezierCurve가 x가 0~100인 구간에 대해서 생성되었으므로, tileSize/100만큼 BezierCurve의 값을 키워준다.
 
         for(int i = 0; i < BezCurve.Count;i++)
         {
-            //outline을 좀더 두껍게
             points[i] *= TileSize / 100;
-            points.Add(points[i] + Vector2.down);
+            //points.Add(points[i] + Vector2.down);//outline을 두껍게 만들기(안씀)
         }
 
         switch (dir)
@@ -386,7 +385,52 @@ public class Tile
                 break;
         }
 
-        return points;
+        List<Vector2Int> lis = new List<Vector2Int>();
+        for(int i = 0; i < points.Count;i++)
+        {
+            lis.Add(Vector2Int.FloorToInt(points[i]));
+        }
+
+        lis = UTILS.removeDuplicates(lis);
+        return lis;
+    }
+
+    //outline 생성 및 퍼즐 텍스쳐 자체에 AntiAliasing 적용
+    void setOutline()
+    {
+        for (int i = 0; i < outlinePoints.Count; i++)
+        {
+            FinalCut.SetPixel((int)outlinePoints[i].x, (int)outlinePoints[i].y, EdgeColor);
+
+            //Edge 인접 픽셀에 연한색 넣어주기(퍼즐 조각 자체에 AntiAliasing 적용)
+            for (int difX = -1; difX < 2; difX++)
+            {
+                for (int difY = -1; difY < 2; difY++)
+                {
+                    if (difX == 0 && difY == 0) continue;
+
+                    Color c = FinalCut.GetPixel((int)outlinePoints[i].x + difX, (int)outlinePoints[i].y + difY);
+
+                    //아예 clear인 외각선 바깥부분일경우, 반투명 회색으로 채워준다.
+                    if (c == Color.clear) c = new Color(0.6f, 0.6f, 0.6f, 0.2f);
+                    else
+                    {
+                        //퍼즐의 안부분
+                        if (c.a == 1)
+                        {
+                            c = new Color(c.r - 0.15f, c.g - 0.15f, c.b -0.15f);
+                        }
+                        //외각선 바깥부분
+                        else
+                        {
+                            c = new Color(c.r - 0.3f, c.g - 0.3f, c.b - 0.3f, c.a + 0.3f);
+                        }
+                    }
+
+                    FinalCut.SetPixel((int)outlinePoints[i].x+difX, (int)outlinePoints[i].y+difY, c);
+                }
+            }
+        }
     }
 
     #region BezierCurve Points의 위치 / 각도 변경
@@ -413,7 +457,6 @@ public class Tile
             iList[i] = new Vector2(iList[i].y, iList[i].x);
         }
     }
-    #endregion
     #endregion
 }
 

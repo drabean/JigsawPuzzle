@@ -58,21 +58,6 @@ public class GameManager : MonoBehaviour
         GameData.Inst.score = (int)(timer.curTime * 100) / 100f;
 
         SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
-    }
-    public GameObject Panel_Loading;
-
-    IEnumerator CO_LoadScene(string SceneName)
-    {
-        yield return null;
-        AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
-
-        while (!async.isDone)
-        {
-            Panel_Loading.SetActive(true);
-
-            yield return null;
-        }
 
     }
-
 }

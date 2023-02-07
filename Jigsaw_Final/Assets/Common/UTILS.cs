@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System.IO;
 
 public enum DIFFICULTY
 {
@@ -39,7 +41,7 @@ public class UTILS : MonoBehaviour
     /// <param name="PixelsPerUnit"></param>
     /// <param name="spriteType"></param>
     /// <returns></returns>
-    public static Sprite CreateSpriteFromTexture2D(Texture2D SpriteTexture, int x, int y, int width, int height, float PixelsPerUnit = 1f, SpriteMeshType spriteType = SpriteMeshType.Tight)
+    public static Sprite CreateSpriteFromTexture2D(Texture2D SpriteTexture, int x, int y, int width, int height, float PixelsPerUnit, SpriteMeshType spriteType)
     {
         Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(x, y, width, height), new Vector2(0.5f, 0.5f), PixelsPerUnit, 0, spriteType);
         return NewSprite;
@@ -97,5 +99,41 @@ public class UTILS : MonoBehaviour
 
         return vecs;
     }
+
+    /// <summary>
+    /// List를 입력받아 중복되는 요소들을 제거한 List를 반환합니다.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    public static List<T> removeDuplicates<T>(List<T> list)
+    {
+        return new HashSet<T>(list).ToList();
+    }
+
+    public static void savePicture(Texture2D tex)
+    {
+
+#if UNITY_EDITOR
+        string fileLocation = "Assets/Captures/";   // 파일의 경로 지정
+#elif UNITY_ANDROID
+        string fileLocation = $"/storage/emulated/0/DCIM/{Application.productName}/";   // 파일의 경로 지정
+#endif
+        string timeName = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");          // 날짜 설정
+        string fileName = "Picture" + timeName + ".png";                                // 파일의 이름 지정
+                                                                                        // string filePath = fileLocation + fileName;
+        string filePath = fileLocation + fileName;
+
+        if (!Directory.Exists(fileLocation)) Directory.CreateDirectory(fileLocation);
+
+        byte[] imageData = tex.EncodeToPNG();
+#if UNITY_EDITOR
+        File.WriteAllBytes(filePath, imageData);
+
+#elif UNITY_ANDROID
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(imageData, Application.productName, fileName, (success, path) => Debug.Log("Media save result: " + success + " " + path));
+#endif
+    }
+
 
 }

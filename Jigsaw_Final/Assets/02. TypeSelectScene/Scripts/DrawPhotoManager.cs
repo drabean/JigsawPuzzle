@@ -74,8 +74,6 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
 
     Vector3[] spriteArea;
 
-    bool isMouseDown;
-
     public DrawCapture drawCapture;
 
     void DrawMouse()
@@ -83,9 +81,9 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.3f));
         mousePos = mousePos.x * Vector3.right + mousePos.y * Vector3.up;
 
-        if (mousePos.x > spriteArea[0].x && mousePos.x < spriteArea[1].x &&
-            mousePos.y > spriteArea[0].y && mousePos.y < spriteArea[1].y)
+        if (mousePos.x > spriteArea[0].x && mousePos.x < spriteArea[1].x && mousePos.y > spriteArea[0].y && mousePos.y < spriteArea[1].y)
         {
+            /*
             if (Input.GetMouseButtonDown(0))
             {
                 isMouseDown = true;
@@ -99,10 +97,28 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
                 connectLine(mousePos);
                 CheckBtnStatus();
             }
+            */
+            if (Input.GetMouseButton(0))
+            {
+                if (curLine == null)
+                {
+                    lineLis.Push(new drawCommand(COMMAND.ADD, createLine(mousePos)));
+                    CheckBtnStatus();
+                }
+                else
+                {
+                    connectLine(mousePos);
+                    CheckBtnStatus();
+                }
+            }
+            else
+            {
+                curLine = null;
+            }
         }
         else
         {
-            isMouseDown = false;
+            curLine = null;
         }
     }
 
@@ -279,7 +295,7 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
     public void Btn_MakePuzzle()
     {
         Texture2D newTex = GameData.Inst.puzzleTexture = drawCapture.Capture(sp);
-        savePicture(newTex);
+        UTILS.savePicture(newTex);
 
         switch (GameData.Inst.difficulty)
         {
@@ -302,40 +318,13 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
 
     }
 
-    void savePicture(Texture2D tex)
-    {
-
-#if UNITY_EDITOR
-        string fileLocation = "Assets/Captures/";   // 파일의 경로 지정
-#elif UNITY_ANDROID
-        string fileLocation = $"/storage/emulated/0/DCIM/{Application.productName}/";   // 파일의 경로 지정
-#endif
-        string timeName = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");          // 날짜 설정
-        string fileName = "Picture" + timeName + ".png";                                // 파일의 이름 지정
-                                                                                        // string filePath = fileLocation + fileName;
-        string filePath = fileLocation + fileName;
-
-        byte[] imageData = tex.EncodeToPNG();
-#if UNITY_EDITOR
-        File.WriteAllBytes(filePath, imageData);
-
-#elif UNITY_ANDROID
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(imageData, Application.productName, fileName, (success, path) => Debug.Log("Media save result: " + success + " " + path));
-#endif
-    }
- 
     public GameObject Panel_Loading;
     IEnumerator CO_LoadScene(string SceneName)
     {
         yield return null;
         AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
 
-        while (!async.isDone)
-        {
-            Panel_Loading.SetActive(true);
-
-            yield return null;
-        }
+        CommonUI.Inst.startLoading();
     }
 
 

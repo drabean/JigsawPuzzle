@@ -19,13 +19,22 @@ public class EndSceneManager : MonoBehaviour
         if (GameData.Inst.type == GAMETYPE.DRAW)
         {
             Time.timeScale = 1;
-            Destroy(CommonUI.Inst.gameObject);
+            CommonUI.Inst.gameObject.SetActive(false);
             SceneManager.LoadScene("01. StartScene");
         }
         else
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene("04. DrawScene");
+            StartCoroutine(CO_LoadScene("04. DrawScene"));
         }
     }
+
+    IEnumerator CO_LoadScene(string SceneName)
+    {
+        yield return null;
+        AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
+
+        CommonUI.Inst.startLoading();
+    }
+
 }

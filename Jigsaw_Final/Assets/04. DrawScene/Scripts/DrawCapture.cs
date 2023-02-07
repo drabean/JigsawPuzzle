@@ -14,10 +14,12 @@ public class DrawCapture : MonoBehaviour
         vertexs [1].position = UTILS.getSpritesArea(sp)[1];
     }
 
-
+    public GameObject textObject;
     public Texture2D Capture(SpriteRenderer sp)
     {
         setDrawCapture(sp);
+
+        textObject.SetActive(false);
 
         cam.gameObject.SetActive(true);
 
@@ -48,6 +50,7 @@ public class DrawCapture : MonoBehaviour
         final.Apply();
 
         cam.gameObject.SetActive(false);
+        textObject.SetActive(true);
 
         return final;
     }

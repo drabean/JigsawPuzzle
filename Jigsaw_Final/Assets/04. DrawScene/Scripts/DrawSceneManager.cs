@@ -76,15 +76,14 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
     bool isMouseDown;
 
     public DrawCapture drawCapture;
-
     void DrawMouse()
     {
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.3f));
         mousePos = mousePos.x * Vector3.right + mousePos.y * Vector3.up;
 
-        if (mousePos.x > spriteArea[0].x && mousePos.x < spriteArea[1].x &&
-            mousePos.y > spriteArea[0].y && mousePos.y < spriteArea[1].y)
+        if (mousePos.x > spriteArea[0].x && mousePos.x < spriteArea[1].x && mousePos.y > spriteArea[0].y && mousePos.y < spriteArea[1].y)
         {
+            /*
             if (Input.GetMouseButtonDown(0))
             {
                 isMouseDown = true;
@@ -98,10 +97,28 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
                 connectLine(mousePos);
                 CheckBtnStatus();
             }
+            */
+            if (Input.GetMouseButton(0))
+            {
+                if (curLine == null)
+                {
+                    lineLis.Push(new drawCommand(COMMAND.ADD, createLine(mousePos)));
+                    CheckBtnStatus();
+                }
+                else
+                {
+                    connectLine(mousePos);
+                    CheckBtnStatus();
+                }
+            }
+            else
+            {
+                curLine = null;
+            }
         }
         else
         {
-            isMouseDown = false;
+            curLine = null;
         }
     }
 

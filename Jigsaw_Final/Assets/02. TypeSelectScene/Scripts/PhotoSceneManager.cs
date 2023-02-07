@@ -107,12 +107,7 @@ public class PhotoSceneManager : MonoBehaviour
         yield return null;
         AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
 
-        while(!async.isDone)
-        {
-            Panel_Loading.SetActive(true);
-
-            yield return null;
-        }
+        CommonUI.Inst.startLoading();
     }
 
 }

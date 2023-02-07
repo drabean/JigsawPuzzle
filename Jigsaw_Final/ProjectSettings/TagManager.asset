@@ -47,6 +47,6 @@ TagManager:
   - name: LineLayer
     uniqueID: 1033161535
     locked: 0
-  - name: New Layer 3
+  - name: UI
     uniqueID: 3648453625
     locked: 0
