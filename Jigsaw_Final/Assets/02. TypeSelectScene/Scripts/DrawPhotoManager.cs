@@ -291,8 +291,8 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
 
     //public DrawCapture drawCapture;
 
-    public GameObject Panel_CaptureDone;
-    public void Btn_MakePuzzle()
+    public GameObject Panel_SaveDone;
+    public void Btn_Save()
     {
         Texture2D newTex = GameData.Inst.puzzleTexture = drawCapture.Capture(sp);
         UTILS.savePicture(newTex);
@@ -314,15 +314,20 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
         }
 
         GameData.Inst.puzzleTexture = newTex;
-        StartCoroutine(CO_LoadScene("03. GameScene"));
+        //  StartCoroutine(CO_LoadScene("03. GameScene"));
+        Panel_SaveDone.SetActive(true);
 
     }
 
-    public GameObject Panel_Loading;
+    public void Btn_MakePuzzle()
+    {
+        StartCoroutine(CO_LoadScene("03. GameScene"));
+    }
+
     IEnumerator CO_LoadScene(string SceneName)
     {
         yield return null;
-        AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
+        SceneManager.LoadSceneAsync(SceneName);
 
         CommonUI.Inst.startLoading();
     }
@@ -369,10 +374,6 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
         drawMode = DRAWMODE.Erase;
     }
 
-    public void Btn_CaptureDone()
-    {
-        Panel_CaptureDone.SetActive(true);
-    }
 
     public Button undoBtn;
     public Button redoBtn;

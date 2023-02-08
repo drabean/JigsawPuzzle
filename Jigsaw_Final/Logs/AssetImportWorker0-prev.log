@@ -1,0 +1,409 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.15f1 (e8e88683f834) revision 15263878'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ko' Physical Memory: 8055 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.3.15f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/KGA_14/Desktop/Jigsaw_Git/JigsawPuzzle/Jigsaw_Final
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+56700
+Successfully changed project path to: C:/Users/KGA_14/Desktop/Jigsaw_Git/JigsawPuzzle/Jigsaw_Final
+C:/Users/KGA_14/Desktop/Jigsaw_Git/JigsawPuzzle/Jigsaw_Final
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [14572] Host "[IP] 192.168.0.40 [Port] 0 [Flags] 2 [Guid] 636384761 [EditorId] 636384761 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-HAVT741) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [14572] Host "[IP] 192.168.0.40 [Port] 0 [Flags] 2 [Guid] 636384761 [EditorId] 636384761 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-HAVT741) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 469.50 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.15f1 (e8e88683f834)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.15f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/KGA_14/Desktop/Jigsaw_Git/JigsawPuzzle/Jigsaw_Final/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) UHD Graphics 630 (ID=0x3e92)
+    Vendor:   Intel
+    VRAM:     4027 MB
+    Driver:   31.0.101.2111
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.15f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.15f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.15f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56936
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.15f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.15f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.020996 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 99.79 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.045 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1046ms)
+		BeginReloadAssembly (320ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (565ms)
+			LoadAssemblies (316ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (151ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (31ms)
+			SetupLoadedEditorAssemblies (312ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (66ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (100ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (96ms)
+				ProcessInitializeOnLoadMethodAttributes (48ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.014545 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 97.13 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.456 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1456ms)
+		BeginReloadAssembly (283ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (142ms)
+		EndReloadAssembly (1032ms)
+			LoadAssemblies (153ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (262ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (57ms)
+			SetupLoadedEditorAssemblies (541ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (18ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (97ms)
+				BeforeProcessingInitializeOnLoad (128ms)
+				ProcessInitializeOnLoadAttributes (239ms)
+				ProcessInitializeOnLoadMethodAttributes (42ms)
+				AfterProcessingInitializeOnLoad (17ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.70 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4100 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (229.2 KB). Loaded Objects now: 4552.
+Memory consumption went from 154.7 MB to 154.5 MB.
+Total: 3.307100 ms (FindLiveObjects: 0.312400 ms CreateObjectMapping: 0.198000 ms MarkObjects: 2.643900 ms  DeleteObjects: 0.151900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1910831.571440 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-11-30.png
+  artifactKey: Guid(f605ee231863fbc4e99d62b7c1220ba8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-11-30.png using Guid(f605ee231863fbc4e99d62b7c1220ba8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4548ceb89ef041cf70dfa162116a85b') in 0.164627 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Captures/Picture2023-02-07-17-24-51.png
+  artifactKey: Guid(9f59a6084c1cfd141af71071e0ca84db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-17-24-51.png using Guid(9f59a6084c1cfd141af71071e0ca84db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acee3f3fea26feb57c16aec6f133492c') in 0.067349 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-03-20.png
+  artifactKey: Guid(4351ae11e5474724d9fbc8524fad5f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-03-20.png using Guid(4351ae11e5474724d9fbc8524fad5f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4aeb8d4c85d27a6ff7a6b6367c221e4e') in 0.189979 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Captures/Picture2023-02-07-15-58-19.png
+  artifactKey: Guid(2825b00091ff7dc4096b50cf5c1d4e29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-15-58-19.png using Guid(2825b00091ff7dc4096b50cf5c1d4e29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5e35e400b4a19a4b83c2e9fe38088f3') in 0.056840 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-02-28.png
+  artifactKey: Guid(1a9741dbdded7604babb153b087e7b5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-02-28.png using Guid(1a9741dbdded7604babb153b087e7b5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '679a57c0478d93cb8ad14fd3ac127b73') in 0.069624 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-08-27.png
+  artifactKey: Guid(970b3628abc6c6244b4d6091e0857dd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-08-27.png using Guid(970b3628abc6c6244b4d6091e0857dd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acbce01e048e4c9179e26ce56ff6f736') in 0.077011 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-10-47.png
+  artifactKey: Guid(823fc1dbbd51c844b832285d7da0b290) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-10-47.png using Guid(823fc1dbbd51c844b832285d7da0b290) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '574f54482adaa724ff74f90d58f30840') in 0.056107 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-01-41.png
+  artifactKey: Guid(5b255ca6bac2cdc429bcf99a92d4c2c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-01-41.png using Guid(5b255ca6bac2cdc429bcf99a92d4c2c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b333831c4a390bf35ac6c85bfe3cf7c3') in 0.062988 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Captures/Picture2023-02-08-09-17-19.png
+  artifactKey: Guid(956bacf5f698d4240a86d9ee60cd64c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-08-09-17-19.png using Guid(956bacf5f698d4240a86d9ee60cd64c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68ebca2370331071c0eae272413b076e') in 0.066791 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Captures/Picture2023-02-07-16-04-53.png
+  artifactKey: Guid(b5aee2656ed5ba049b7d78b077bf2e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-07-16-04-53.png using Guid(b5aee2656ed5ba049b7d78b077bf2e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e45623c6b21dba1433a6bf26748178f') in 0.085592 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 41.730505 seconds.
+  path: Assets/Captures/Picture2023-02-08-11-47-07.png
+  artifactKey: Guid(da1f2083bc87cd347ab18ad6e1a9ab3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Captures/Picture2023-02-08-11-47-07.png using Guid(da1f2083bc87cd347ab18ad6e1a9ab3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a400ebc5e76866d99accae7a94a0c55') in 0.421234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1637.948103 seconds.
+  path: Assets/02. TypeSelectScene/02_1. DrawScene.unity
+  artifactKey: Guid(27ddbab5f021c164bbbeff7aa77e066a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/02. TypeSelectScene/02_1. DrawScene.unity using Guid(27ddbab5f021c164bbbeff7aa77e066a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86b62eee12910a10352eaea16f06367b') in 0.028794 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013275 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.73 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.425 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1426ms)
+		BeginReloadAssembly (425ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (29ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (220ms)
+		EndReloadAssembly (881ms)
+			LoadAssemblies (167ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (266ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (42ms)
+			SetupLoadedEditorAssemblies (397ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (25ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (106ms)
+				ProcessInitializeOnLoadAttributes (205ms)
+				ProcessInitializeOnLoadMethodAttributes (41ms)
+				AfterProcessingInitializeOnLoad (18ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 4.45 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4081 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (195.7 KB). Loaded Objects now: 4570.
+Memory consumption went from 157.6 MB to 157.4 MB.
+Total: 3.862700 ms (FindLiveObjects: 0.286300 ms CreateObjectMapping: 0.167400 ms MarkObjects: 3.230100 ms  DeleteObjects: 0.178100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.014214 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 5.29 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  7.510 seconds
+Domain Reload Profiling:
+	ReloadAssembly (7520ms)
+		BeginReloadAssembly (1375ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (65ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (432ms)
+		EndReloadAssembly (5452ms)
+			LoadAssemblies (1169ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (2009ms)
+			ReleaseScriptCaches (11ms)
+			RebuildScriptCaches (430ms)
+			SetupLoadedEditorAssemblies (1771ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (192ms)
+				SetLoadedEditorAssemblies (5ms)
+				RefreshPlugins (6ms)
+				BeforeProcessingInitializeOnLoad (436ms)
+				ProcessInitializeOnLoadAttributes (833ms)
+				ProcessInitializeOnLoadMethodAttributes (235ms)
+				AfterProcessingInitializeOnLoad (64ms)
+				EditorAssembliesLoaded (1ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (54ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 49.25 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4081 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (196.7 KB). Loaded Objects now: 4573.
+Memory consumption went from 157.6 MB to 157.4 MB.
+Total: 33.512200 ms (FindLiveObjects: 2.152300 ms CreateObjectMapping: 1.890400 ms MarkObjects: 26.997900 ms  DeleteObjects: 2.465200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013888 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\KGA_14\Desktop\Jigsaw_Git\JigsawPuzzle\Jigsaw_Final\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 8.87 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in 13.035 seconds
+Domain Reload Profiling:
+	ReloadAssembly (13046ms)
+		BeginReloadAssembly (1901ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (80ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (533ms)
+		EndReloadAssembly (9924ms)
+			LoadAssemblies (1677ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (2657ms)
+			ReleaseScriptCaches (30ms)
+			RebuildScriptCaches (651ms)
+			SetupLoadedEditorAssemblies (4686ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (302ms)
+				SetLoadedEditorAssemblies (11ms)
+				RefreshPlugins (12ms)
+				BeforeProcessingInitializeOnLoad (1030ms)
+				ProcessInitializeOnLoadAttributes (2797ms)
+				ProcessInitializeOnLoadMethodAttributes (391ms)
+				AfterProcessingInitializeOnLoad (142ms)
+				EditorAssembliesLoaded (1ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (101ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 10.07 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4081 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (195.7 KB). Loaded Objects now: 4576.
+Memory consumption went from 157.6 MB to 157.4 MB.
+Total: 3.707800 ms (FindLiveObjects: 0.302600 ms CreateObjectMapping: 0.193600 ms MarkObjects: 2.822300 ms  DeleteObjects: 0.388000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 

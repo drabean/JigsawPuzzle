@@ -165,7 +165,7 @@ public class Generator_Board : MonoBehaviour
                 Tile.CreatePuzzlePeaceBackFromTile(tile).transform.SetParent(transform);
             }
         }
-        initSpritesPositions();
+        //initSpritesPositions();
     }
 
 
@@ -203,11 +203,7 @@ public class Generator_Board : MonoBehaviour
             sps[randNum] = temp;
         }
 
-        
-
-
-        //1초동안 기다린 뒤에 퍼즐 조각을 퍼트림
-        yield return new WaitForSeconds(1.0f);
+       
 
         for (int i = 0; i < sps.Count; i++)
         {
@@ -217,7 +213,7 @@ public class Generator_Board : MonoBehaviour
             sps[i].GetComponent<TileMovement>().Move_Time(moveVec, 0.8f);
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.8f);
         for (int i = 0; i < sps.Count; i++)
         {
             sps[i].GetComponent<TileMovement>().canInteract = true;

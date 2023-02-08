@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,15 +13,27 @@ public class GameManager : MonoBehaviour
 
     public Timer timer;
 
+    public Animator readyAnim;
+
     private void Start()
     {
         Inst = this;
 
-        boardGenerator.startGeneratingPuzzle();
-
         setProperty();
 
+        boardGenerator.startGeneratingPuzzle();
+
+        StartCoroutine(CO_PuzzleMove());
+    }
+
+    IEnumerator CO_PuzzleMove()
+    {
+        yield return new WaitForSeconds(0.3f);
+        readyAnim.SetTrigger("Start");
+        yield return new WaitForSeconds(3.0f);
+        boardGenerator.initSpritesPositions();
         timer.start();
+
     }
     public void setProperty()
     {

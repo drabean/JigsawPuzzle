@@ -86,18 +86,9 @@ public class PhotoSceneManager : MonoBehaviour
                 break;
         }
 
-
-
         GameData.Inst.puzzleTexture = newTex;
 
-
-
-
-
-
-        //SceneManager.LoadScene("03. GameScene");
         StartCoroutine(CO_LoadScene("03. GameScene"));
-
     }
 
     public GameObject Panel_Loading;

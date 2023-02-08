@@ -291,39 +291,21 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
 
     //public DrawCapture drawCapture;
 
-    public GameObject Panel_CaptureDone;
+    public GameObject Panel_SaveDone;
     public void Btn_Capture()
     {
+            UTILS.savePicture(drawCapture.Capture(sp));
 
-#if UNITY_EDITOR
-        string fileLocation = "Assets/Captures/";   // 파일의 경로 지정
-#elif UNITY_ANDROID
-        string fileLocation = $"/storage/emulated/0/DCIM/{Application.productName}/";   // 파일의 경로 지정
-#endif
-        string timeName = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");          // 날짜 설정
-        string fileName = "Picture" + timeName + ".png";                                // 파일의 이름 지정
-                                                                                        // string filePath = fileLocation + fileName;
-        string filePath = fileLocation + fileName;
-
-
-        drawCapture.setDrawCapture(sp);
-        byte[] imageData = drawCapture.Capture(sp).EncodeToPNG();
-#if UNITY_EDITOR
-        File.WriteAllBytes(filePath, imageData);
-
-#elif UNITY_ANDROID
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(imageData, Application.productName, fileName, (success, path) => Debug.Log("Media save result: " + success + " " + path));
-#endif
-            // Panel_CaptureDone.SetActive(true);
-
-
-
-            Time.timeScale = 0;
-            SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
+            Panel_SaveDone.SetActive(true);
         
 
     }
 
+    public void Btn_OpenGallary()
+    {
+        //여기바꿔야함
+        SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
+    }
 
 
     public void Btn_Undo()
@@ -364,11 +346,6 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
     public void Btn_Eraser()
     {
         drawMode = DRAWMODE.Erase;
-    }
-
-    public void Btn_CaptureDone()
-    {
-        Panel_CaptureDone.SetActive(true);
     }
 
     public Button undoBtn;
