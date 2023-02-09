@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 using System.IO;
 public class DrawPhotoManager : MonoBehaviour, IColorPicker
@@ -294,7 +294,7 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
     public GameObject Panel_SaveDone;
     public void Btn_Save()
     {
-        Texture2D newTex = GameData.Inst.puzzleTexture = drawCapture.Capture(sp);
+        Texture2D newTex = drawCapture.Capture(sp);
         UTILS.savePicture(newTex);
 
         switch (GameData.Inst.difficulty)
@@ -314,23 +314,15 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
         }
 
         GameData.Inst.puzzleTexture = newTex;
-        //  StartCoroutine(CO_LoadScene("03. GameScene"));
         Panel_SaveDone.SetActive(true);
 
     }
 
     public void Btn_MakePuzzle()
     {
-        StartCoroutine(CO_LoadScene("03. GameScene"));
+        LoadSceneManager.LoadSceneAsync("03. GameScene");
     }
 
-    IEnumerator CO_LoadScene(string SceneName)
-    {
-        yield return null;
-        SceneManager.LoadSceneAsync(SceneName);
-
-        CommonUI.Inst.startLoading();
-    }
 
 
 

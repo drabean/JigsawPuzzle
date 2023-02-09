@@ -37,13 +37,6 @@ public class CommonUI : MonoBehaviour
         }
 
     }
-
-    private void Start()
-    {
-        interactSpriteIdx = Random.Range(0, interactSprite.Length);
-        touchImage.sprite = interactSprite[interactSpriteIdx];
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
     public void Btn_Setting()
     {
         UIPanel.SetActive(true);
@@ -154,41 +147,4 @@ public class CommonUI : MonoBehaviour
         gameObject.SetActive(false);
         Time.timeScale = 1f;
     }
-
-
-    #region LoadingPanel
-
-    public GameObject LoadingGroup;
-
-    public Image touchImage;
-    //public Image[] Backgrounds;
-
-    //public Sprite[] textSprite;
-    public Sprite[] interactSprite;
-
-    int interactSpriteIdx;
-
-    public void startLoading()
-    {
-        LoadingGroup.SetActive(true);
-    }
-
-    public void endLoading()
-    {
-        LoadingGroup.SetActive(false);
-    }
-    public void Btn_Loading()
-    {
-        Debug.Log("CHANGE");
-        interactSpriteIdx += Random.Range(0, interactSprite.Length - 1);
-        interactSpriteIdx %= interactSprite.Length;
-
-        touchImage.sprite = interactSprite[interactSpriteIdx];
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        endLoading();
-    }
-    #endregion
-
 }

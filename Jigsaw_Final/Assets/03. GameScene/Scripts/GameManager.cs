@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 
     public Animator readyAnim;
 
-    private void Start()
+
+    private void Awake()
     {
         Inst = this;
 
@@ -60,18 +61,17 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    [ContextMenu("ClearTest")]
-    public void StartDraw()
+    
+    public void GameOver()
     {
-        Debug.Log("CLEAR!");
+        Debug.Log("CLEAR");
 
         timer.stop();
 
-        //소수점 1자리까지만
+        //시간을 소수점 1자리까지만 끊어서 점수로 저장
         GameData.Inst.score = (int)(timer.curTime * 100) / 100f;
 
-        SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
 
+        SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
     }
 }

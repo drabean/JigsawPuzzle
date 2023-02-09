@@ -10,16 +10,20 @@ public class GameData : MonoBehaviour
     public float score;
     //public PlayerInfo info; 
 
-    public Sprite sp;
+    //읽어온 원본 텍스쳐
+    public Texture2D originTexture;
+
     public Texture2D puzzleTexture;
 
     public void Awake()
     {
-        DontDestroyOnLoad(gameObject);
 
-        if (Inst == null) Inst = this;
+        if (Inst == null)
+        {
+            Inst = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(gameObject);
-
     }
 
     void Update()

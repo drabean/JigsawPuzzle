@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
-using static NativeCamera;
-
 public class TypeSelectSceneManager: MonoBehaviour
 {
     public void Btn_Draw()
@@ -17,8 +15,6 @@ public class TypeSelectSceneManager: MonoBehaviour
     {
         GameData.Inst.type = GAMETYPE.CAMERA;
         Camera_Open();
-
-
     }
 
     public void Btn_Select()
@@ -27,32 +23,45 @@ public class TypeSelectSceneManager: MonoBehaviour
         Gallery_Open();
     }
 
-    Sprite loadedSp;
-
-
     public void Gallery_Open()  // 갤러리 진입
     {
-        NativeGallery.GetImageFromGallery((file) =>
+        try
         {
-            FileInfo select = new FileInfo(file);
+            NativeGallery.GetImageFromGallery((file) =>
+            {
+                FileInfo select = new FileInfo(file);
 
-            if (select.Length > 50000000) return;
+                if (select.Length > 50000000) return;
 
             // 불러오기
             if (!string.IsNullOrEmpty(file)) LoadImage(file);
-        });
+            });
+        }
+        catch
+        {
+            Debug.Log("선택안합");
+        }
     }
     public void Camera_Open()
     {
-        NativeCamera.TakePicture((file) =>
+        try
         {
-            FileInfo select = new FileInfo(file);
 
-            if (select.Length > 50000000) return;
+
+            NativeCamera.TakePicture((file) =>
+            {
+                FileInfo select = new FileInfo(file);
+
+                if (select.Length > 50000000) return;
 
             // 불러오기
             if (!string.IsNullOrEmpty(file)) LoadImage(file);
-        });
+            });
+        }
+        catch
+        {
+            Debug.Log("선택안합");
+        }
 
     }
 
@@ -64,10 +73,9 @@ public class TypeSelectSceneManager: MonoBehaviour
         tex.LoadImage(fileData);
         //cameraImage.texture = tex;
 
-        Rect rect = new Rect(0, 0, tex.width, tex.height);
-        loadedSp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
-        GameData.Inst.sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
-        SceneManager.LoadScene("02_23. SelectPhotoScene");
+        GameData.Inst.originTexture = tex;
+
+        LoadSceneManager.LoadSceneAsync("02_23. SelectPhotoScene");
 
     }
 }

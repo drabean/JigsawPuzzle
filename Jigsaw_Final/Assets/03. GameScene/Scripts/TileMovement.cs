@@ -83,7 +83,8 @@ public class TileMovement : MonoBehaviour, Object_Interactive
 
             sp.sortingOrder = 0;
 
-            if (SortManager.Inst.sps.Count == 0) GameManager.Inst.StartDraw();
+            //GameOver∆«¡§
+            if (SortManager.Inst.sps.Count == 0) GameManager.Inst.GameOver();
             Destroy(GetComponent<BoxCollider2D>());
             Destroy(this);
         }

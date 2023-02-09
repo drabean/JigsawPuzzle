@@ -8,10 +8,29 @@ public class EndSceneManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreTMP;
 
+    public int rewardStar;
+
     private void Start()
     {
         Time.timeScale = 0;
         scoreTMP.text = GameData.Inst.score.ToString("N2");
+
+
+        switch(GameData.Inst.score)
+        {
+            case (< 50):
+                rewardStar = 5;
+                break;
+            case (<70):
+                rewardStar = 8;
+                break;
+            case (<90):
+                rewardStar = 12;
+                break;
+
+        }    
+
+
     }
 
     public void ExitRoom()
@@ -25,16 +44,9 @@ public class EndSceneManager : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            StartCoroutine(CO_LoadScene("04. DrawScene"));
+            LoadSceneManager.LoadSceneAsync("04. DrawScene");
         }
     }
 
-    IEnumerator CO_LoadScene(string SceneName)
-    {
-        yield return null;
-        AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
-
-        CommonUI.Inst.startLoading();
-    }
 
 }

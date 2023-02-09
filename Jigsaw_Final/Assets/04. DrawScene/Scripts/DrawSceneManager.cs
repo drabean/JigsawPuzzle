@@ -304,7 +304,12 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
     public void Btn_OpenGallary()
     {
         //여기바꿔야함
-        SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
+            NativeGallery.GetImageFromGallery((file) =>
+            {
+                Debug.Log("Open Gallery");
+            });
+
+        SceneManager.LoadScene("01. StartScene");
     }
 
 

@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/04. DrawScene/04. DrawScene.unity
     guid: cab3b5077f7f09e42bf7e50311de81ea
   - enabled: 1
-    path: Assets/EndScene/Additive_EndScene.unity
+    path: Assets/10. EndScene/Additive_EndScene.unity
     guid: 609aec8b3453bce4ea8111aa4147b5fa
+  - enabled: 1
+    path: Assets/11. LoadScene/11. LoadScene.unity
+    guid: 3894570cab8f0d944b02519c4c081791
   m_configObjects: {}

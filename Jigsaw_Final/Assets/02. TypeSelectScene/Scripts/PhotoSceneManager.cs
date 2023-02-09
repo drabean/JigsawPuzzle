@@ -14,11 +14,17 @@ public class PhotoSceneManager : MonoBehaviour
     {
         if (Inst == null) Inst = this;
         else Destroy(gameObject);
+
+
+        Texture2D tex = UTILS.RescaleTextureByWidth(GameData.Inst.originTexture, 2448);
+        Rect rect = new Rect(0, 0, tex.width, tex.height);
+
+        sp.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
+
     }
 
     private void Start()
     {
-        sp.sprite = GameData.Inst.sp;
         setProperty();
     }
 
@@ -88,17 +94,6 @@ public class PhotoSceneManager : MonoBehaviour
 
         GameData.Inst.puzzleTexture = newTex;
 
-        StartCoroutine(CO_LoadScene("03. GameScene"));
+        LoadSceneManager.LoadSceneAsync("03. GameScene");
     }
-
-    public GameObject Panel_Loading;
-
-    IEnumerator CO_LoadScene(string SceneName)
-    {
-        yield return null;
-        AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
-
-        CommonUI.Inst.startLoading();
-    }
-
 }
