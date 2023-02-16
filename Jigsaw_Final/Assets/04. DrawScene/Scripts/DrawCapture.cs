@@ -15,6 +15,12 @@ public class DrawCapture : MonoBehaviour
     }
 
     public GameObject textObject;
+
+    /// <summary>
+    /// spriteRender 범위가 화면에 보이는 만크a
+    /// </summary>
+    /// <param name="sp"></param>
+    /// <returns></returns>
     public Texture2D Capture(SpriteRenderer sp)
     {
         setDrawCapture(sp);

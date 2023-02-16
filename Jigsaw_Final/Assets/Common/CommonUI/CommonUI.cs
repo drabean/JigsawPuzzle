@@ -24,7 +24,7 @@ public class CommonUI : MonoBehaviour
 
     private void Awake()
     {
-        if(Inst == null)
+        if (Inst == null)
         {
             Inst = this;
             DontDestroyOnLoad(gameObject);
@@ -37,10 +37,12 @@ public class CommonUI : MonoBehaviour
         }
 
     }
+
     public void Btn_Setting()
     {
         UIPanel.SetActive(true);
         Time.timeScale = 0f;
+        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
     }
 
     public void Btn_Restart()
@@ -50,13 +52,16 @@ public class CommonUI : MonoBehaviour
         UIPanel.SetActive(false);
         SoundManager.Inst.StopBGM();
         SceneManager.LoadScene(startSceneName);
+        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
 
     }
 
     public void Btn_Exit()
     {
+        Application.Quit();
+        /*
 #if UNITY_ANDROID
-        if(!IsAppInstalled(MainPackageName))
+        if (!IsAppInstalled(MainPackageName))
         {
             Debug.Log("앱이 깔려있지 않습니다");
             return;
@@ -76,6 +81,7 @@ public class CommonUI : MonoBehaviour
 #else
         Debug.Log("NOT SUPPORTED IN EDITOR");
 #endif
+        */
     }
     bool IsAppInstalled(string bundleID)
     {
@@ -108,12 +114,13 @@ public class CommonUI : MonoBehaviour
     public void Btn_Help()
     {
         Debug.Log("미?구현");
+        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
     }
     public void Btn_BGM()
     {
         if (BGMOn)
         {
-            SoundManager.Inst.setBGMVolume(0); 
+            SoundManager.Inst.setBGMVolume(0);
             BGMOn = false;
             Image_BGM.sprite = TogleImages[1];
         }
@@ -123,6 +130,7 @@ public class CommonUI : MonoBehaviour
             BGMOn = true;
             Image_BGM.sprite = TogleImages[0];
         }
+        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
     }
 
     public void Btn_SFX()
@@ -139,6 +147,7 @@ public class CommonUI : MonoBehaviour
             SFXOn = true;
             Image_SFX.sprite = TogleImages[0];
         }
+        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
     }
 
     public void Btn_Close()
@@ -146,5 +155,6 @@ public class CommonUI : MonoBehaviour
         UIPanel.SetActive(false);
         gameObject.SetActive(false);
         Time.timeScale = 1f;
+        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
     }
 }

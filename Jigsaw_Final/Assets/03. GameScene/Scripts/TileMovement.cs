@@ -77,6 +77,7 @@ public class TileMovement : MonoBehaviour, Object_Interactive
         float dist = (transform.position - GetCorrectPosition()).magnitude;
         if (dist < answerDist)
         {
+            SoundManager.Inst.PlaySFX("SFX_PuzzleCorrect");
             transform.position = GetCorrectPosition();
             canInteract = false;
             SortManager.Inst.sps.Remove(sp);
@@ -87,6 +88,10 @@ public class TileMovement : MonoBehaviour, Object_Interactive
             if (SortManager.Inst.sps.Count == 0) GameManager.Inst.GameOver();
             Destroy(GetComponent<BoxCollider2D>());
             Destroy(this);
+        }
+        else
+        {
+            SoundManager.Inst.PlaySFX("SFX_PuzzleWrong");
         }
     }
 

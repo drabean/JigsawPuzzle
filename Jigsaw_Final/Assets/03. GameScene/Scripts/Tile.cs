@@ -160,6 +160,11 @@ public class Tile
         return obj;
     }
 
+    /// <summary>
+    /// Tile 스크립트로부터 반투명한 뒷배경(퍼즐) 오브젝트 생성
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <returns></returns>
     public static GameObject CreatePuzzlePeaceBackFromTile(Tile tile)
     {
         GameObject obj = new GameObject();
@@ -295,7 +300,6 @@ public class Tile
         for(int i = 0; i < BezCurve.Count;i++)
         {
             points[i] *= TileSize / 100;
-            //points.Add(points[i] + Vector2.down);//outline을 두껍게 만들기(안씀)
         }
 
         switch (dir)

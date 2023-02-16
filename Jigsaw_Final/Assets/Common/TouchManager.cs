@@ -20,6 +20,7 @@ public class TouchManager : MonoBehaviour
 
             switch (Input.touches[i].phase)
             {
+                //터치하기
                 case TouchPhase.Began:
                     {
                         RaycastHit2D hit = Physics2D.Raycast(pos, transform.forward, maxDistance);
@@ -39,7 +40,7 @@ public class TouchManager : MonoBehaviour
 
                     }
                     break;
-
+                //터치 땔때
                 case TouchPhase.Ended:
                     if (objs[i] != null)
                     {
@@ -47,7 +48,7 @@ public class TouchManager : MonoBehaviour
                         objs[i] = null;
                     }
                     break;
-
+                //드래그
                 default:
                     if (objs[i] != null)
                     {

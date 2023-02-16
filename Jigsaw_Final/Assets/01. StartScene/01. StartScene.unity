@@ -152,8 +152,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c26a6ef3b58e48a6feae7c4cad897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm: []
-  sfx: []
+  bgm:
+  - {fileID: 8300000, guid: 13bd909d0bc50ea40a26d52e37740a79, type: 3}
+  - {fileID: 8300000, guid: a84bec6d41eb20b4f873e214b9ea86e6, type: 3}
+  sfx:
+  - {fileID: 8300000, guid: fc1626366a0f12a4781b2da97f243d38, type: 3}
+  - {fileID: 8300000, guid: 308b34d92f3484042be334dbfbfde51a, type: 3}
+  - {fileID: 8300000, guid: 6075c36cf4e15e047a481196ac338b80, type: 3}
+  - {fileID: 8300000, guid: 7effbcd64c68fa74888a4fe85d20a409, type: 3}
+  - {fileID: 8300000, guid: 00baf9f4761e2c349bfd8f4a06252ebd, type: 3}
+  - {fileID: 8300000, guid: 93e09141399651b4182713e7343ed793, type: 3}
+  - {fileID: 8300000, guid: 0be38fe0c83e4b84da6cf0e0b6547387, type: 3}
+  - {fileID: 8300000, guid: 12d39bc99ae9c434a99a3a43cef86bf5, type: 3}
   bgmPlayer: {fileID: 1318567414}
   sfxPlayer:
   - {fileID: 1467965087}
@@ -779,7 +789,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1686,7 +1696,7 @@ MonoBehaviour:
   difficulty: 0
   type: 0
   score: 0
-  sp: {fileID: 0}
+  originTexture: {fileID: 0}
   puzzleTexture: {fileID: 0}
 --- !u!4 &1807467178
 Transform:

@@ -16,7 +16,7 @@ public class PhotoSceneManager : MonoBehaviour
         else Destroy(gameObject);
 
 
-        Texture2D tex = UTILS.RescaleTextureByWidth(GameData.Inst.originTexture, 2448);
+        Texture2D tex = UTILS.RescaleTextureByHeight(GameData.Inst.originTexture, 1632);
         Rect rect = new Rect(0, 0, tex.width, tex.height);
 
         sp.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));

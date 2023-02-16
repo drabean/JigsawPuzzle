@@ -18,6 +18,7 @@ public class LoadSceneManager : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Inst.PlaySFX("SFX_ChangeScene");
         interactSpriteIdx = Random.Range(0, interactSprite.Length);
         touchImage.sprite = interactSprite[interactSpriteIdx];
 

@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("CLEAR");
-
+        SoundManager.Inst.PlaySFX("SFX_Clear");
         timer.stop();
 
         //시간을 소수점 1자리까지만 끊어서 점수로 저장

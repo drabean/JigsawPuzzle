@@ -85,7 +85,21 @@ public class UTILS : MonoBehaviour
         result.Apply();
         return result;
     }
-
+    public static Texture2D RescaleTextureByHeight(Texture2D source, int targetHeight)
+    {
+        int targetWidth = (int)(targetHeight * ((float)source.texelSize.y / source.texelSize.x));
+        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
+        Color[] rpixels = result.GetPixels(0);
+        float incX = (1.0f / (float)targetWidth);
+        float incY = (1.0f / (float)targetHeight);
+        for (int px = 0; px < rpixels.Length; px++)
+        {
+            rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth), incY * ((float)Mathf.Floor(px / targetWidth)));
+        }
+        result.SetPixels(rpixels, 0);
+        result.Apply();
+        return result;
+    }
     /// <summary>
     /// 해당 SpriteRender가 화면상에서 차지하는 영역을 반환합니다
     /// [0]: 최소점, [1]: 최대점
