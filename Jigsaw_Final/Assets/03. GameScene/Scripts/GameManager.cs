@@ -44,19 +44,19 @@ public class GameManager : MonoBehaviour
         {
             case DIFFICULTY.EASY:
                 Camera.main.orthographicSize = 350;
-                Camera.main.transform.position = new Vector3(200, 200, -10);
+                Camera.main.transform.position = new Vector3(200, 140, -10);
                 break;
             case DIFFICULTY.NORMAL:
                 Camera.main.orthographicSize = 450;
-                Camera.main.transform.position = new Vector3(300, 300, -10);
+                Camera.main.transform.position = new Vector3(300, 200, -10);
                 break;
             case DIFFICULTY.HARD:
                 Camera.main.orthographicSize = 550;
-                Camera.main.transform.position = new Vector3(400, 400, -10);
+                Camera.main.transform.position = new Vector3(400, 300, -10);
                 break;
             case DIFFICULTY.MASTER:
                 Camera.main.orthographicSize = 650;
-                Camera.main.transform.position = new Vector3(500, 500, -10);
+                Camera.main.transform.position = new Vector3(500, 395, -10);
                 break;
         }
 

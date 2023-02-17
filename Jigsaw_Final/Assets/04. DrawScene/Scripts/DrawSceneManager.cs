@@ -32,11 +32,7 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
     {
         CheckBtnStatus();
 
-        if (GameData.Inst.type != GAMETYPE.DRAW)
-        {
-            GameData.Inst.type = GAMETYPE.DRAW;
-            sp.sprite = UTILS.CreateSpriteFromTexture2D(UTILS.RescaleTextureByHeight(GameData.Inst.puzzleTexture, 1632));
-        }
+        sp.sprite = UTILS.CreateSpriteFromTexture2D(UTILS.RescaleTextureByHeight(GameData.Inst.puzzleTexture, 1632));
         spriteArea = UTILS.getSpritesArea(sp);
 
     }
