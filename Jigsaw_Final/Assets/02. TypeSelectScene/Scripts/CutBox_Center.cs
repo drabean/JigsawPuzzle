@@ -28,6 +28,7 @@ public class CutBox_Center : MonoBehaviour, Object_Interactive
     {
         Vector2 targetPos = touchPos + mOffset;
 
+        //자르기 영역이 사진 밖으로 나갈수 없도록 조정
         if (checkCanMove(targetPos))
         {
             transform.position = Vector3.right * targetPos.x + Vector3.up * targetPos.y + Vector3.forward;

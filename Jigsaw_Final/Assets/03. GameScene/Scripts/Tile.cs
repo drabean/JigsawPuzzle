@@ -224,6 +224,7 @@ public class Tile
         Vector2Int start = new Vector2Int(tileSizeWithPadding / 2, tileSizeWithPadding / 2);
 
         pixelVisited[start.x, start.y] = true;
+        //탐색Queue에 퍼즐 중앙 넣음.
         visitStack.Push(start);
     }
     //선을 기준으로 Flood Fill을 통해 퍼즐조각 텍스쳐를 생성

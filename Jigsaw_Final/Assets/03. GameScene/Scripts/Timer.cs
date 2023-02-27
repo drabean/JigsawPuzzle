@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour
         while(true)
         {
             time += Time.deltaTime;
-            if (timeText != null) timeText.text = "½Ã°£: " + time.ToString("N");
+            if (timeText != null) timeText.text = ((int)time).ToString() ;
 
             yield return null;
         }

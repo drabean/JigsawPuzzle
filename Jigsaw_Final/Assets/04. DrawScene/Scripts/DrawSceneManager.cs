@@ -33,6 +33,7 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
         CheckBtnStatus();
 
         sp.sprite = UTILS.CreateSpriteFromTexture2D(UTILS.RescaleTextureByHeight(GameData.Inst.puzzleTexture, 1632));
+
         spriteArea = UTILS.getSpritesArea(sp);
 
     }
@@ -106,65 +107,72 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
         }
     }
 
-    public CircleCollider2D eraser;
-    ContactFilter2D filter = new ContactFilter2D().NoFilter();
-    List<Collider2D> results = new List<Collider2D>();
-
-
+    /// <summary>
+    /// ERASE모드일때 Ray를 쏴서 맞으면, 맞은 대상의 LineRenderer가 있는지 확인해서 있다면 그 게임오브젝트를 지움.
+    /// </summary>
     void EraseMouse()
     {
-        if (Input.GetMouseButtonDown(0))
+        for (int i = 0; i < Input.touchCount; i++)
         {
-            
-            StartCoroutine(CO_EraseMouse());
-        }
-    }
+            Vector3 touchPos = cam.ScreenToWorldPoint(Input.touches[i].position);
+            touchPos = (Vector2)touchPos;
 
-    WaitForSeconds waitErase  = new WaitForSeconds(0.1f);
-
-    IEnumerator CO_EraseMouse()
-    {
-        Vector2 mousePosition = Input.mousePosition;
-        mousePosition = cam.ScreenToWorldPoint(mousePosition);
-
-        eraser.transform.position = mousePosition;
-        yield return waitErase;
-
-        eraser.OverlapCollider(filter, results);
-
-        int check = -1;
-        GameObject targetLine = null;
-
-        for(int i = 0; i < results.Count; i++)
-        {
-            if(results[i].TryGetComponent<LineRenderer>(out LineRenderer line))
+            if (touchPos.x > spriteArea[0].x && touchPos.x < spriteArea[1].x && touchPos.y > spriteArea[0].y && touchPos.y < spriteArea[1].y)
             {
-                if(line.sortingLayerName.Equals("LineLayer"))
+                if (Input.touches[0].phase == TouchPhase.Began)
                 {
-                    if(line.sortingOrder > check)
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(touchPos, transform.forward, 15f);
+
+                    int sortingOrder = -1;
+                    GameObject lineToDelete = null;
+
+                    for (int hitCount = 0; hitCount < hits.Length; hitCount++)
                     {
-                        targetLine = line.gameObject;
-                        check = line.sortingOrder;
+                        if (hits[hitCount].collider != null)
+                        {
+                            if (hits[hitCount].transform.TryGetComponent<LineRenderer>(out LineRenderer line))
+                            {
+                                if (line.sortingLayerName.Equals("LineLayer") && line.sortingOrder > sortingOrder)
+                                {
+                                    lineToDelete = line.gameObject;
+
+                                }
+                            }
+                        }
                     }
+
+                    if (lineToDelete != null)
+                    {
+                        lineToDelete.GetComponent<LineRenderer>().sortingLayerName = "UndoLayer";
+
+                        lineLis.Push(new drawCommand(COMMAND.DELETE, lineToDelete));
+                    }
+
+
+
+                }
+                else
+                {
+                    lines[i] = null;
                 }
             }
         }
-        if (targetLine != null)
-        {
-            SoundManager.Inst.PlaySFX("SFX_DrawUndo");
-            targetLine.GetComponent<LineRenderer>().sortingLayerName = "UndoLayer";
-            lineLis.Push(new drawCommand(COMMAND.DELETE, targetLine));
-        }
-
     }
-
+    /// <summary>
+    /// LineRendrer를 생성하고, Color와 Size등의 Option을 넣어준 뒤에, 충돌감지를 위한 EdgeCollider를 추가해주는 함수.
+    /// </summary>
+    /// <param name="mousePos"></param>
+    /// <param name="idx"></param>
+    /// <returns></returns>
     GameObject createLine(Vector3 mousePos, int idx)
     {
         positionCounts[idx] = 2;
         GameObject line = new GameObject("Line");
         LineRenderer lineRend = line.AddComponent<LineRenderer>();
         EdgeCollider2D col = line.AddComponent<EdgeCollider2D>();
-        line.AddComponent<CircleCollider2D>().radius = 10.0f;
+        col.edgeRadius = drawSize/2;
+        //라인을 생성할 때 선을 그리지 않고 점만 찍으면, Collider 검출이 되지 않기 때문에 점을 처음 생성 할 때 해당 위치에 Circle Collider를 추가해준다.
+        line.AddComponent<CircleCollider2D>().radius = drawSize/2;
 
 
         line.transform.parent = transform;
@@ -184,7 +192,7 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
         //color 설정
         lineRend.startColor = curColor;
         lineRend.endColor = curColor;
-        //neRend.
+
 
         lineRend.SetPosition(0, mousePos);
         lineRend.SetPosition(1, mousePos);
@@ -199,7 +207,11 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
         return line;
     }
 
-
+    /// <summary>
+    /// 이미 존재하는 LineRenderer에 점을 추가하여 선을 이어그려주는 함수.
+    /// </summary>
+    /// <param name="mousePos"></param>
+    /// <param name="idx"></param>
     void connectLine(Vector3 mousePos, int idx)
     {
         if (PrevPos != null && Mathf.Abs(Vector3.Distance(PrevPos, mousePos)) >= 0.001f)
@@ -213,6 +225,11 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
 
     }
 
+    /// <summary>
+    /// 그림을 지우기 위해 Eraser를 사용할 때, Line GameObject를 가져오게 위해 LineRerer의 각 점들을 받아와, 해당 점을 기반으로
+    /// 똑같은 모양의 EdgeCollider를 만들어 줍니다.
+    /// </summary>
+    /// <param name="lineRend"></param>
     void setEdgeCollider(LineRenderer lineRend)
     {
         List<Vector2> edges = new List<Vector2>();
@@ -278,13 +295,22 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
     //public DrawCapture drawCapture;
 
     public GameObject Panel_SaveDone;
+    public Image PanelImage;
+    public Image BtnImage;
     public void Btn_Capture()
     {
-            UTILS.savePicture(drawCapture.Capture(sp));
+        Panel_SaveDone.SetActive(true);
+        PanelImage.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+        BtnImage.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
 
-            Panel_SaveDone.SetActive(true);
-
+        UTILS.savePicture(drawCapture.Capture(sp));
         SoundManager.Inst.PlaySFX("SFX_Select");
+
+
+
+
+        PanelImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        BtnImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
     public void Btn_OpenGallary()
@@ -357,6 +383,7 @@ public class DrawSceneManager : MonoBehaviour, IColorPicker
 
     void IColorPicker.setPickerColor(Color c)
     {
+        SoundManager.Inst.PlaySFX("SFX_DrawUndo");
         curColor = c;
     }
 

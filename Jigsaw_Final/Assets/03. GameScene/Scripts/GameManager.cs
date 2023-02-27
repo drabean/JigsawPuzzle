@@ -68,9 +68,10 @@ public class GameManager : MonoBehaviour
         SoundManager.Inst.PlaySFX("SFX_Clear");
         timer.stop();
 
+
         //시간을 소수점 1자리까지만 끊어서 점수로 저장
         GameData.Inst.score = (int)(timer.curTime * 100) / 100f;
-
+        timer.transform.parent.gameObject.SetActive(false);
 
         SceneManager.LoadScene("Additive_EndScene", LoadSceneMode.Additive);
     }

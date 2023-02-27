@@ -16,11 +16,23 @@ public class PhotoSceneManager : MonoBehaviour
         else Destroy(gameObject);
 
 
-        Texture2D tex = UTILS.RescaleTextureByHeight(GameData.Inst.originTexture, 1632);
-        Rect rect = new Rect(0, 0, tex.width, tex.height);
+        //Texture2D tex = UTILS.RescaleTextureByHeight(GameData.Inst.originTexture, 1632);
 
-        sp.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
+        //Rect rect = new Rect(0, 0, tex.width, tex.height);
 
+        sp.sprite = UTILS.CreateSpriteFromTexture2D(GameData.Inst.originTexture);
+
+        if((float)GameData.Inst.originTexture.width / GameData.Inst.originTexture.height >= 1.3f)
+        {
+            Camera.main.orthographicSize = GameData.Inst.originTexture.width * 0.5f;
+        }
+        else
+        {
+            Camera.main.orthographicSize = GameData.Inst.originTexture.height * 0.65f;
+        }
+
+        cutBox.transform.localScale = Camera.main.orthographicSize * Vector3.one * 0.06f;
+        cutBox.GetComponent<LineRenderer>().startWidth = cutBox.transform.localScale.x * 0.1f;
     }
 
     private void Start()

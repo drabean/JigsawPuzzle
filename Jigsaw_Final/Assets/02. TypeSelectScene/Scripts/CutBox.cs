@@ -56,7 +56,7 @@ public class CutBox : MonoBehaviour
 
     }
 
-
+    //Cutbox로 자르는 범위를 보여주기 위한 LineRenderer 값 변경.
     void changeBoxLine()
     {
         Vector2 rectMin = Vector2.Min(vertexs[0].position, vertexs[1].position);
@@ -75,18 +75,25 @@ public class CutBox : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 선택한 범위를 실제로 캡쳐하는 함수.
+    /// </summary>
+    /// <returns></returns>
     public Texture2D Capture()
     {
+        //캡쳐용 카메라 ON
         cam.gameObject.SetActive(true);
 
+        //Main Camera와 같은 범위를 찍도록 만듬
         cam.transform.position = Camera.main.transform.position;
         cam.orthographicSize = Camera.main.orthographicSize;
 
+        //캡쳐용 카메라에 찍히면 안되는 오브젝트 비활성화
         lineRend.enabled = false;
         vertexs[0].gameObject.SetActive(false);
         vertexs[1].gameObject.SetActive(false);
 
-
+        //캡쳐용 카메라 Render
         cam.Render();
 
         RenderTexture.active = cam.targetTexture;//여기까지 캡쳐할 카메라 세팅
@@ -101,13 +108,17 @@ public class CutBox : MonoBehaviour
         int width = (int)(maxPos.x - minPos.x);
         int height = (int)(maxPos.y - minPos.y);
 
-
+        //캡쳐한 이미지를 저장할 Texture 생성
         Texture2D final = new Texture2D(width, height);
 
         //texture 와 unity상의 y좌표의 차이로 인하여, y에대해 반전된 영역을 찍어야 올바르게 찍힘.
+        //생성한 Texture에 캡쳐용 카메라로 캡쳐한 이미지의 지정된 부분을 복사함.
         final.ReadPixels(new Rect(minPos.x, minPos.y, width, height), 0, 0);
+        //모바일, 유니티 에디터에서는 위에 말고 아래꺼 써야함. 왜지 대체 왜지 먼이ㅏㄴㅁ라밀하ㅣㅁㅇㅎㅁ
+        //final.ReadPixels(new Rect(minPos.x, cam.pixelHeight - maxPos.y, width, height), 0, 0);
         final.Apply();
 
+        //초기화.
         cam.gameObject.SetActive(false);
 
         lineRend.enabled = true;

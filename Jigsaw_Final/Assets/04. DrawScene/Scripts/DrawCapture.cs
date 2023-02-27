@@ -53,6 +53,7 @@ public class DrawCapture : MonoBehaviour
         final.ReadPixels(new Rect(minPos.x, minPos.y, width, height), 0, 0);
         //모바일, 유니티 에디터에서는 위에 말고 아래꺼 써야함. 왜지 대체 왜지 먼이ㅏㄴㅁ라밀하ㅣㅁㅇㅎㅁ
         //final.ReadPixels(new Rect(minPos.x, cam.pixelHeight - maxPos.y, width, height), 0, 0);
+
         final.Apply();
 
         cam.gameObject.SetActive(false);
