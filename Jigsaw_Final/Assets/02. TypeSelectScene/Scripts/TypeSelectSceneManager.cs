@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Android;
 using System.IO;
 public class TypeSelectSceneManager: MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class TypeSelectSceneManager: MonoBehaviour
         SoundManager.Inst.PlaySFX("SFX_ClickBtn");
 
         GameData.Inst.type = GAMETYPE.CAMERA;
+        checkAuth();
         Camera_Open();
     }
 
@@ -31,6 +33,7 @@ public class TypeSelectSceneManager: MonoBehaviour
         SoundManager.Inst.PlaySFX("SFX_ClickBtn");
         
         GameData.Inst.type = GAMETYPE.SELECT;
+        checkAuth();
         Gallery_Open();
     }
 
@@ -39,6 +42,7 @@ public class TypeSelectSceneManager: MonoBehaviour
     /// </summary>
     public void Gallery_Open()  // 갤러리 진입
     {
+        checkAuth();
         try
         {
             NativeGallery.GetImageFromGallery((file) =>
@@ -63,10 +67,9 @@ public class TypeSelectSceneManager: MonoBehaviour
     /// 
     public void Camera_Open()
     {
+        checkAuth();
         try
         {
-
-
             NativeCamera.TakePicture((file) =>
             {
                 FileInfo select = new FileInfo(file);
@@ -100,5 +103,23 @@ public class TypeSelectSceneManager: MonoBehaviour
 
         LoadSceneManager.LoadSceneAsync("02_23. SelectPhotoScene");
 
+    }
+
+    void checkAuth()
+    {
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera)) // 접근 권한이 없다면
+        {
+            Permission.RequestUserPermission(Permission.Camera);        // 접근 권한 요청
+        }
+        // 파일 접근 권한 요청(파일 읽기)
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead)) // 접근 권한이 없다면
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageRead);        // 접근 권한 요청
+        }
+        // 파일 접근 권한 요청(파일 쓰기)
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite)) // 접근 권한이 없다면
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageWrite);        // 접근 권한 요청
+        }
     }
 }

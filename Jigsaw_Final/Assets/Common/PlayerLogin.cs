@@ -51,7 +51,7 @@ public class PlayerLogin
         }
         catch
         {
-            Debug.Log("noData");
+            Debug.Log("noPlayerData");
             return "testPlayer";
         }
 

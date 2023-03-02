@@ -36,71 +36,23 @@ public class EndSceneManager : MonoBehaviour
         bool isHighScore = false;
         HighScoreImage.SetActive(isHighScore);
 
+        List<string> rewardTable = CSVUTILS.LoadData("rewardTable.csv");
 
-        switch(GameData.Inst.difficulty)
+        string[] rewards = rewardTable[(int)GameData.Inst.difficulty + 1].Split(",");
+
+        if (GameData.Inst.score < int.Parse(rewards[1]))
         {
-            case DIFFICULTY.EASY:
-                switch(GameData.Inst.score)
-                {
-                    case < 30:
-                        rewardStar = 12;
-                        break;
-                    case < 40:
-                        rewardStar = 8;
-                        break;
-                    default:
-                        rewardStar = 5;
-                        break;
-
-                }
-                break;
-            case DIFFICULTY.NORMAL:
-                switch (GameData.Inst.score)
-                {
-                    case < 45:
-                        rewardStar = 12;
-                        break;
-                    case < 55:
-                        rewardStar = 8;
-                        break;
-                    default:
-                        rewardStar = 5;
-                        break;
-
-                }
-                break;
-            case DIFFICULTY.HARD:
-                switch (GameData.Inst.score)
-                {
-                    case < 60:
-                        rewardStar = 12;
-                        break;
-                    case < 70:
-                        rewardStar = 8;
-                        break;
-                    default:
-                        rewardStar = 5;
-                        break;
-
-                }
-                break;
-            case DIFFICULTY.MASTER:
-                switch (GameData.Inst.score)
-                {
-                    case < 100:
-                        rewardStar = 12;
-                        break;
-                    case < 120:
-                        rewardStar = 8;
-                        break;
-                    default:
-                        rewardStar = 5;
-                        break;
-
-                }
-                break;
-
+            rewardStar = 12;
         }
+        else if (GameData.Inst.score < int.Parse(rewards[2]))
+        {
+            rewardStar = 8;
+        }
+        else
+        {
+            rewardStar = 5;
+        }
+
 
         rewardStarText.text = "X"+rewardStar;
         nameTMP.text = PlayerLogin.getPlayerData();

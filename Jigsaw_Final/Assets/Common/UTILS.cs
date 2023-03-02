@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 
 public enum DIFFICULTY
 {
-    EASY,
-    NORMAL,
-    HARD,
-    MASTER
+    EASY = 0,
+    NORMAL = 1,
+    HARD = 2,
+    MASTER = 3
 }
 public enum GAMETYPE
 {
