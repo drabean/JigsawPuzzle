@@ -36,7 +36,7 @@ public class EndSceneManager : MonoBehaviour
         bool isHighScore = false;
         HighScoreImage.SetActive(isHighScore);
 
-        List<string> rewardTable = CSVUTILS.LoadData("rewardTable.csv");
+        List<string> rewardTable = CSVUTILS.LoadData("rewardTable");
 
         string[] rewards = rewardTable[(int)GameData.Inst.difficulty + 1].Split(",");
 

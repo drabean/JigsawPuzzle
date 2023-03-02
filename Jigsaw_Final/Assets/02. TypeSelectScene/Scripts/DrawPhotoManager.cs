@@ -291,11 +291,13 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
         if (!picker.gameObject.activeInHierarchy)
         {
             picker.OpenColorPicker();
+            drawMode = DRAWMODE.Draw;
         }
 
         else
         {
             picker.CloseColorPIcker();
+            drawMode = DRAWMODE.Draw;
         }
     }
 
@@ -454,6 +456,7 @@ public class DrawPhotoManager : MonoBehaviour, IColorPicker
     {
         SoundManager.Inst.PlaySFX("SFX_DrawUndo");
         curColor = c;
+        drawMode = DRAWMODE.Draw;
     }
 
     #endregion

@@ -8,15 +8,15 @@ public class CSVUTILS : MonoBehaviour
     public static List<string> LoadData(string fileName)
     {
         //저장할 Path 설정
-        string filePath = Application.dataPath + "\\" + fileName;
-        List<string> resultList = new List<string>();
+        TextAsset filePath = Resources.Load<TextAsset>(fileName);
 
-        TextReader tr = new StreamReader(filePath);
+        StringReader tr = new StringReader(filePath.text);
+
         if (tr == null)
         {
             return null;
         }
-
+        List<string> resultList = new List<string>();
 
         string line = tr.ReadLine();//첫줄은 Properties이므로 따로 처리안함
 
