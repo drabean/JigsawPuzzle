@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI nameTMP;
+    public TextMeshProUGUI nameTMP;
     [SerializeField] Text scoreText;
     [SerializeField] Text rewardStarText;
 
@@ -21,6 +21,9 @@ public class EndSceneManager : MonoBehaviour
 
     public Canvas endSceneCanvas;
     public Canvas fadeCanvas;
+
+    public InGameRanking inGameRanking = null;
+
     private void Start()
     {
         endSceneCanvas.worldCamera = Camera.main;
@@ -55,8 +58,8 @@ public class EndSceneManager : MonoBehaviour
 
 
         rewardStarText.text = "X"+rewardStar;
-        nameTMP.text = PlayerLogin.getPlayerData();
-        //reward 실제 변경 함수는 이쪽에 추가
+
+        inGameRanking.EndingSceneSequnce(GameData.Inst.score,rewardStar,3,GameData.Inst.difficulty);
     }
 
     public void ExitRoom()
